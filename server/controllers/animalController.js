@@ -11,12 +11,12 @@ export const getAnimals = async (req, res) => {
 };
 
 export const getUserAnimals = async (req, res) => {
-  const userId = req.params.id;
+  const ownerId = req.params.id;
 
   try {
     const [animals] = await db.query(
-      "SELECT * FROM animals WHERE user_id = ?",
-      [userId]
+      "SELECT * FROM animals WHERE owner_id = ?",
+      [ownerId]
     );
 
     res.json(animals);
@@ -26,3 +26,5 @@ export const getUserAnimals = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
+

@@ -1,17 +1,29 @@
 import { Link } from "react-router-dom";
 import { getCurrentUser, logout } from "../ui/auth";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Profile() {
   const user = getCurrentUser();
+  const owner = user 
+  const [animals, setAnimals] = useState([]);
   
+
+ useEffect(() => {
+    if (!owner) return;
+
+    axios.get(`http://localhost:5000/animals/user/${owner.id}`)
+      .then((res) => setAnimals(res.data))
+      .catch((err) => console.error(err));
+  }, [owner]);
 
   if (!user) {
     return (
       <div>
         <p>Вы не авторизированы</p>
         <div className="grid gap-4 grid-cols-2 mt-10">
-          <button><Link to={"/login"}>Авторизация</Link></button>
-          <button><Link to={"/register"}>Регистрация</Link></button>
+          <Link to={"/login"}><button className="w-full">Авторизация</button></Link>
+          <Link to={"/register"}><button className="w-full">Регистрация</button></Link>
         </div>
       </div>
     );
@@ -43,7 +55,24 @@ export default function Profile() {
         </div>    
             ): (
               <>
-              <h2 className="mt-4">Ваши животные:</h2>
+              <h2 className="mt-4">Список ваших животных:</h2>
+              {animals.length > 0 ? (
+            <ul className="mt-4 grid gap-2 grid-cols-2 items-center text-center justify-center">
+              {animals.map((animal) => (
+                <li key={animal.id} className="border p-2 mb-2 rounded">
+                  <p>Имя: {animal.name}</p>
+                  <p>Тип животного: {animal.type}</p>
+                  <div className="grid gap-2 grid-cols-2">  
+                    <Link to={`/card/${animal.id}`}><button className="mt-4 w-full">Перейти</button></Link>
+                    <button className="mt-4">Редактировать</button>
+                  </div>  
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="mt-4">У вас еще нет выставленных животных.</p>
+          )}
+
                 <div className="flex flex-col justify-center items-center mt-4">
                   <button>Добавить животного</button>
                 </div>

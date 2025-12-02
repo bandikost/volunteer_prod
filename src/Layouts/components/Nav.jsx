@@ -4,7 +4,7 @@ import profile from "../../../public/Images/Icons/profile.svg"
 export default function Nav() {
  
     return (
-        <nav className="flex items-center justify-between w-full max-w-[1300px] mx-auto px-5 text-lg">
+        <nav className="flex items-center justify-between w-full max-w-[1180px] mx-auto px-5 text-lg">
 
                 <ul className="flex space-x-4">
                     <li className="text-zinc-800 hover:text-zinc-300 duration-500">

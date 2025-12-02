@@ -13,5 +13,8 @@ return {
 
 export const logout = () => {
 localStorage.removeItem("user");
-window.location.href = "/profile"; 
+setTimeout(() => {
+          window.location.href = "/profile";
+        }, 1000);
+ 
 };

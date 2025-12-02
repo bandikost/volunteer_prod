@@ -10,15 +10,11 @@ export const register = async (req, res) => {
     email,
     phone,
     password,
-    confirm_password,
     volunteer,
     organization
   } = req.body;
 
   try {
-    if (password !== confirm_password) {
-      return res.status(400).json({ message: "Passwords do not match" });
-    }
 
     const [existing] = await db.query(
       "SELECT * FROM users WHERE email = ?",
@@ -139,6 +135,7 @@ export const login = async (req, res) => {
 
     res.json({
     accessToken,
+    id: user.id,
     first_name: user.first_name,
     last_name: user.last_name,
     email: user.email,
