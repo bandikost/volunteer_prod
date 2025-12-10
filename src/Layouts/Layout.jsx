@@ -6,7 +6,7 @@ export default function Layout() {
     <div className="flex flex-col">
       <Header  />
       <main className="flex-grow">
-        <div className="w-full max-w-[1200px] mx-auto px-4 mt-20">
+        <div className="w-full max-w-[990px] mx-auto px-4 mt-20">
           <Outlet />
         </div>
       </main> 

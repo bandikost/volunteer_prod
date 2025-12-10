@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
-import { updateAnimal } from "../../store/animalsSlice"
-import { removeFromCart } from "../../store/cartSlice"
+import { updateAnimal } from "../../../store/animalsSlice"
+import { removeFromCart } from "../../../store/cartSlice"
 
 
 export default function ButtonToRemoveCart({animal, 

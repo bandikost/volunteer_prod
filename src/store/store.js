@@ -1,5 +1,5 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import cartReducer from "./cartSlice";
+import favoriteReducer from "./favoriteSlice";
 import animalsReducer from "./animalsSlice";
 
 
@@ -18,11 +18,11 @@ import {
 const persistConfig = {
     key: "root", // ключ в localStorage, под которым будет храниться state
     storage, // использование localStorage
-    whitelist: ["cart", "animals"] // какие редбюсеры сохраняются
+    whitelist: ["favorite", "animals"] // какие редбюсеры сохраняются
 }
 
 const rootReducer = combineReducers({ // объединяем несколько редьюсеров в один
-    cart: cartReducer,
+    favorite: favoriteReducer,
     animals: animalsReducer,
 })
 
